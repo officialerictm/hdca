@@ -1,0 +1,21 @@
+name: Daily Check-in
+on:
+  schedule:
+    # Runs at 17:00 UTC daily (adjust if needed)
+    - cron: '0 17 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Check-in
+        uses: codemasher/hoyolab-daily-checkin-action@main
+        with:
+          # This MUST match the name of the Secret you made
+          cookie: ${{ secrets.COOKIE }}
+          genshin: true
+          honkai3rd: false
+          starrail: false
+          tearsofthemis: false
